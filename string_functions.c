@@ -6,7 +6,7 @@
 int my_strlen(char * s){
   int answer = -1;
   // keep adding until you get the null character
-  while (*(s + ++answer)){}
+  while (s[++answer]){}
   return answer;
 }
 
@@ -15,7 +15,7 @@ int my_strlen(char * s){
 char * my_strcpy(char * dest, char * source){
   int check = -1;
   // copy each character over one by one
-  while (*(source + ++check)){
+  while (source[++check]){
     dest[check] = source[check];
   }
   // one more for the null character
@@ -30,7 +30,7 @@ char * my_strcat(char * dest, char * source){
   return dest;
 }
 
-int my_strcmp(char *s1, char *s2){
+int my_strcmp(char * s1, char * s2){
   int check = -1;
   // loop through s2
   while (s2[++check]){
@@ -45,11 +45,13 @@ int my_strcmp(char *s1, char *s2){
     return 1;
   // they're equal
   return 0;
-
 }
 
-char * my_strchr(char *s, char c){
-  return 0;
+char * my_strchr(char * s, char c){
+  int check = -1;
+  // loops through while s has characters and stops if it hits the end or it hits c
+  while(s[++check] && s[check] != c){}
+  return s + check;
 }
 
 
@@ -90,4 +92,10 @@ int main(){
   printf("my_strcmp(\"MR DW\", \"mr dw\"): %d\n", my_strcmp("MR DW", "mr dw"));
   printf("strcmp(\"\", \"\"): %d\n", strcmp("", ""));
   printf("my_strcmp(\"\", \"\"): %d\n", my_strcmp("", ""));
+
+
+  // strchr testing
+  printf("\nstrchr testing:\n");
+  printf("strchr(\"mr dw\", 'd'): %s\n", strchr("mr dw", 'd'));
+  printf("my_strchr(\"mr dw\", 'd'): %s\n", my_strchr("mr dw", 'd'));
 }

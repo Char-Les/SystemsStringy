@@ -15,13 +15,22 @@ int my_strlen(char * s){
 char * my_strcpy(char * dest, char * source){
   int check = -1;
   // copy each character over one by one
-  while (*(source + ++check)){
+  while (source[++check]){
     dest[check] = source[check];
   }
   // one more for the null character
   dest[check] = source[check];
   return dest;
 }
+
+//not required
+char * my_strncpy(char *dest, char * source, int n){
+  int check = -1;
+  while (check != n && source[++check]){
+    dest[check] = source[check]; }
+
+  dest[check] = '\0';
+  return dest; }
 
 // concatenates source to dest
 char * my_strcat(char * dest, char * source){
@@ -73,6 +82,13 @@ int main(){
   printf("strcpy(<empty array>, \"mr dw\"): %s\n", strcpy(s2, "mr dw"));
   printf("my_strcpy(<empty array>, \"mr dw\"): %s\n", my_strcpy(s2, "mr dw"));
 
+  // strncpy testing
+  char sb[20];
+  char sc[20];
+  printf("\nstrncpy testing:\n");
+  memset(sb, '\0', sizeof(sb));
+  printf("strncpy(<empty array>, \"mr dw\", 3): %s\n", strncpy(sb, "mr dw", 3));
+  printf("my_strcpy(<empty array>, \"mr dw\", 3): %s\n", my_strncpy(sc, "mr dw", 3));
 
   // strcat testing
   char s4[20] = "mr dw";
@@ -91,5 +107,4 @@ int main(){
   printf("strcmp(\"\", \"\"): %d\n", strcmp("", ""));
   printf("my_strcmp(\"\", \"\"): %d\n", my_strcmp("", ""));
 }
-
  

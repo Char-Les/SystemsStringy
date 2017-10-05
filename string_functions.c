@@ -10,7 +10,7 @@
 int my_strlen(char * s){
   int answer = -1;
   // keep adding until you get the null character
-  while (s[++answer]){}
+  while (*(s + ++answer)){}
   return answer;
 }
 
@@ -27,6 +27,15 @@ char * my_strcpy(char * dest, char * source){
   return dest;
 }
 
+//not required
+char * my_strncpy(char *dest, char * source, int n){
+  int check = -1;
+  while (check != n && source[++check]){
+    dest[check] = source[check]; }
+
+  dest[check] = '\0';
+  return dest; }
+
 // concatenates source to dest
 char * my_strcat(char * dest, char * source){
   // this is basically just copying source to the end of dest
@@ -34,7 +43,7 @@ char * my_strcat(char * dest, char * source){
   return dest;
 }
 
-int my_strcmp(char * s1, char * s2){
+int my_strcmp(char *s1, char *s2){
   int check = -1;
   // loop through s2
   while (s2[++check]){
@@ -49,13 +58,11 @@ int my_strcmp(char * s1, char * s2){
     return 1;
   // they're equal
   return 0;
+
 }
 
-char * my_strchr(char * s, char c){
-  int check = -1;
-  // loops through while s has characters and stops if it hits the end or it hits c
-  while(s[++check] && s[check] != c){}
-  return s + check;
+char * my_strchr(char *s, char c){
+  return 0;
 }
 
 
@@ -79,6 +86,13 @@ int main(){
   printf("strcpy(<empty array>, \"mr dw\"): %s\n", strcpy(s2, "mr dw"));
   printf("my_strcpy(<empty array>, \"mr dw\"): %s\n", my_strcpy(s2, "mr dw"));
 
+  // strncpy testing
+  char sb[20];
+  char sc[20];
+  printf("\nstrncpy testing:\n");
+  memset(sb, '\0', sizeof(sb));
+  printf("strncpy(<empty array>, \"mr dw\", 3): %s\n", strncpy(sb, "mr dw", 3));
+  printf("my_strcpy(<empty array>, \"mr dw\", 3): %s\n", my_strncpy(sc, "mr dw", 3));
 
   // strcat testing
   char s4[20] = "mr dw";
@@ -96,10 +110,5 @@ int main(){
   printf("my_strcmp(\"MR DW\", \"mr dw\"): %d\n", my_strcmp("MR DW", "mr dw"));
   printf("strcmp(\"\", \"\"): %d\n", strcmp("", ""));
   printf("my_strcmp(\"\", \"\"): %d\n", my_strcmp("", ""));
-
-
-  // strchr testing
-  printf("\nstrchr testing:\n");
-  printf("strchr(\"mr dw\", 'd'): %s\n", strchr("mr dw", 'd'));
-  printf("my_strchr(\"mr dw\", 'd'): %s\n", my_strchr("mr dw", 'd'));
 }
+ 

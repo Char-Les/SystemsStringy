@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//Charles Weng
+//Systems Period 4
+//HW05 -- If you like it you should've put a string on it
+//2017-10-6
 
 // get the length of s
 int my_strlen(char * s){
